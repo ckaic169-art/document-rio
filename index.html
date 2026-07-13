@@ -52,26 +52,40 @@
             box-shadow:0 2px 5px rgba(0,0,0,0.2);
         }
 
+        .brand{
+            display:flex;
+            flex-direction:column;
+            gap:2px;
+        }
+
         .logo{
             font-size:1.5rem;
             font-weight:bold;
             letter-spacing:1px;
         }
 
+        .tagline{
+            font-size:0.9rem;
+            color:rgba(255,255,255,0.8);
+        }
+
         nav ul{
             display:flex;
-            gap:20px;
+            gap:12px;
+            align-items:center;
         }
 
         nav a{
-            padding:5px 10px;
-            border-radius:5px;
+            padding:6px 12px;
+            border-radius:999px;
             transition:0.3s;
+            display:inline-block;
         }
 
         nav a:hover{
-            background:rgba(255,255,255,0.1);
-            color:#66b3ff;
+            background:rgba(255,255,255,0.14);
+            color:#dcefff;
+            transform:translateY(-1px);
         }
 
         /* HERO */
@@ -275,6 +289,11 @@
                 justify-content:center;
             }
 
+            .brand{
+                align-items:center;
+                text-align:center;
+            }
+
             .hero h1{
                 font-size:2rem;
             }
@@ -293,8 +312,12 @@
 
     <header>
 
-        <div class="logo">
-            Turma de Informática 2023-2026
+        <div class="logo" style="display:flex;align-items:center;gap:12px;">
+    <img src="logo do site.jpeg"
+         alt="Logo da Turma"
+         style="width:60px;height:60px;border-radius:50%;object-fit:cover;">
+    <span>Turma de Informática 2023-2026</span>
+            </div>
         </div>
 
         <nav>
