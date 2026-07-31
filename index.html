@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turma de Informática 2023-2026</title>
+    <title>Inesquecíveis 2024-2026</title>
 
     <style>
 
@@ -91,12 +91,8 @@
         /* HERO */
 
         .hero{
-            background:
-            linear-gradient(rgba(0,51,102,0.8), rgba(0,51,102,0.8)),
-            url('https://images.unsplash.com/photo-1523050853998-8f7c8d60ca93?auto=format&fit=crop&w=1350&q=80');
-
-            background-size:cover;
-            background-position:center;
+            position:relative;
+            overflow:hidden;
             height:60vh;
 
             display:flex;
@@ -109,14 +105,73 @@
             padding:20px;
         }
 
+        .hero video{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            z-index:-2;
+        }
+
+        .hero .overlay{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,51,102,.6);
+            z-index:-1;
+        }
+
         .hero h1{
-            font-size:3rem;
-            margin-bottom:10px;
+            font-size:clamp(2.8rem, 6vw, 4.5rem);
+            margin-bottom:16px;
+            line-height:1.05;
         }
 
         .hero p{
-            max-width:700px;
-            font-size:1.2rem;
+            max-width:720px;
+            font-size:1.1rem;
+            margin:0 auto;
+            line-height:1.8;
+        }
+
+        .hero .hero-actions{
+            margin-top:2rem;
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:14px;
+        }
+
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            padding:14px 26px;
+            border-radius:999px;
+            border:none;
+            font-weight:600;
+            cursor:pointer;
+            transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+        }
+
+        .btn-primary{
+            background:#ffb703;
+            color:#003366;
+        }
+
+        .btn-secondary{
+            background:rgba(255,255,255,0.16);
+            color:white;
+            border:1px solid rgba(255,255,255,0.35);
+        }
+
+        .btn:hover{
+            transform:translateY(-2px);
+            box-shadow:0 14px 24px rgba(0,0,0,0.2);
         }
 
         /* SEÇÕES */
@@ -153,6 +208,10 @@
         .about-text{
             flex:1;
             min-width:300px;
+        }
+
+        .about-text p{
+            margin-bottom:12px;
         }
 
         .about-image{
@@ -312,11 +371,15 @@
 
     <header>
 
-        <div class="logo" style="display:flex;align-items:center;gap:12px;">
-    <img src="logo do site.jpeg"
-         alt="Logo da Turma"
-         style="width:60px;height:60px;border-radius:50%;object-fit:cover;">
-    <span>Turma de Informática 2023-2026</span>
+        <div class="brand">
+            <div class="logo" style="display:flex;align-items:center;gap:12px;">
+                <img src="logo do site.jpeg"
+                    alt="Logo da Turma"
+                    style="width:60px;height:60px;border-radius:50%;object-fit:cover;">
+                <span>Inesquecíveis 2024-2026</span>
+            </div>
+            <div class="tagline">
+                Memórias da nossa turma e nossos melhores momentos
             </div>
         </div>
 
@@ -324,33 +387,40 @@
             <ul>
                 <li><a href="#inicio">Início</a></li>
                 <li><a href="#sobre">Nossa História</a></li>
-                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#professores">Professores</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#galeria">Galeria Geral</a></li>
                 <li><a href="#contato">Contribuir</a></li>
             </ul>
         </nav>
 
     </header>
 
-    <!-- HERO -->
+    <!-- BANNER EM VÍDEO -->
 
     <section id="inicio" class="hero">
 
-        <h1>Aprendendo Juntos</h1>
+        <video autoplay muted loop playsinline>
+            <source src="banner.mp4" type="video/mp4">
+        </video>
+
+        <div class="overlay"></div>
+
+        <h1>Momentos Inesquecíveis</h1>
 
         <p>
-            Um registro das memórias, amizades,
-            projetos e momentos inesquecíveis da
-            nossa turma de informática.
+            Uma história construída entre amizades,
+            aprendizados e muitas conquistas.
         </p>
 
     </section>
 
-    <!-- SOBRE -->
+    <!-- NOSSA HISTÓRIA -->
 
     <section id="sobre">
 
         <h2 class="section-title">
-            Quem Somos
+            Nossa História
         </h2>
 
         <div class="about-content">
@@ -358,20 +428,13 @@
             <div class="about-text">
 
                 <p>
-                    Somos uma turma que cresceu junta
-                    durante os anos de 2023 até 2026.
-                    Entre trabalhos, provas, eventos,
-                    brincadeiras e muitas risadas,
-                    criamos memórias que ficarão
-                    para sempre.
+                    Entre 2024 e 2026, construímos juntos uma trajetória
+                    marcada por amizade, aprendizado e muitas conquistas.
                 </p>
 
-                <br>
-
                 <p>
-                    Este site foi criado para registrar
-                    nossa trajetória e guardar momentos
-                    especiais da turma.
+                    Este espaço reúne as memórias, os projetos e os
+                    momentos que tornaram nossa turma inesquecível.
                 </p>
 
             </div>
@@ -387,12 +450,76 @@
 
     </section>
 
-    <!-- GALERIA -->
+    <!-- PROFESSORES -->
+
+    <section id="professores">
+
+        <h2 class="section-title">
+            Professores
+        </h2>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item">
+                <img src="https://placehold.co/300x300" alt="">
+                <div class="caption">
+                    Professor(a) 1
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://placehold.co/300x300" alt="">
+                <div class="caption">
+                    Professor(a) 2
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://placehold.co/300x300" alt="">
+                <div class="caption">
+                    Professor(a) 3
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PROJETOS -->
+
+    <section id="projetos">
+
+        <h2 class="section-title">
+            Projetos
+        </h2>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item">
+                <h3>Feira de Ciências</h3>
+                <p>Projeto desenvolvido pela turma durante o ano letivo.</p>
+            </div>
+
+            <div class="gallery-item">
+                <h3>Site da Turma</h3>
+                <p>Projeto criado pelos alunos para registrar as memórias da classe.</p>
+            </div>
+
+            <div class="gallery-item">
+                <h3>Robótica</h3>
+                <p>Desenvolvimento de projetos utilizando Arduino.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- GALERIA GERAL -->
 
     <section id="galeria">
 
         <h2 class="section-title">
-            Galeria de Memórias
+            Galeria Geral
         </h2>
 
         <div class="gallery-grid">
@@ -444,7 +571,7 @@
 
                     <br><br>
 
-                    <small>- João Silva</small>
+                    <small>- João Pedro</small>
 
                 </div>
 
@@ -454,7 +581,7 @@
 
     </section>
 
-    <!-- FORMULÁRIO -->
+    <!-- CONTRIBUIR -->
 
     <section id="contato" class="contact-section">
 
@@ -520,15 +647,10 @@
     <!-- FOOTER -->
 
     <footer>
+        <p>Projeto Oficial - Momentos Inesquecíveis 2024-2026</p>
 
-        <p>
-            Projeto Oficial da Turma de Informática 2023-2026
-        </p>
-
-        <p>
-            &copy; Todos os direitos reservados.
-        </p>
-
+        <p>Criado por <strong>Kaic Carvalho Mendes Santos</strong> e <strong>Ryan Santana Soledade Lopes</strong></p>
+        <p>&copy; 2026 - Todos os direitos reservados.</p>
     </footer>
 
     <!-- SCRIPT -->
