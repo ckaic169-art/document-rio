@@ -340,12 +340,19 @@
 
             header{
                 flex-direction:column;
-                gap:15px;
+                gap:10px;
+                padding:0.8rem 5%;
             }
 
             nav ul{
                 flex-wrap:wrap;
                 justify-content:center;
+                gap:6px;
+            }
+
+            nav a{
+                padding:5px 10px;
+                font-size:0.85rem;
             }
 
             .brand{
@@ -353,12 +360,72 @@
                 text-align:center;
             }
 
+            .logo{
+                font-size:1.1rem;
+            }
+
+            .tagline{
+                font-size:0.75rem;
+            }
+
+            .hero{
+                height:40vh;
+                padding:16px;
+            }
+
             .hero h1{
-                font-size:2rem;
+                font-size:1.7rem;
+                margin-bottom:10px;
+            }
+
+            .hero p{
+                font-size:0.9rem;
+            }
+
+            section{
+                padding:36px 6%;
             }
 
             .section-title{
-                font-size:1.5rem;
+                font-size:1.3rem;
+                margin-bottom:24px;
+            }
+
+            .about-content{
+                gap:16px;
+            }
+
+            .gallery-grid{
+                grid-template-columns:repeat(2, minmax(0, 1fr));
+                gap:10px;
+            }
+
+            .gallery-item{
+                padding:6px;
+            }
+
+            .gallery-item img,
+            .gallery-item iframe{
+                height:110px;
+            }
+
+            .caption{
+                font-size:0.8rem;
+            }
+
+            form{
+                padding:18px;
+            }
+        }
+
+        @media(max-width:420px){
+
+            .gallery-grid{
+                grid-template-columns:1fr;
+            }
+
+            .hero h1{
+                font-size:1.4rem;
             }
         }
 
