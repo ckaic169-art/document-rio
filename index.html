@@ -37,6 +37,10 @@
             list-style:none;
         }
 
+        html{
+            scroll-behavior:smooth;
+        }
+
         /* HEADER */
 
         header{
@@ -129,6 +133,8 @@
             font-size:clamp(2.8rem, 6vw, 4.5rem);
             margin-bottom:16px;
             line-height:1.05;
+            opacity:0;
+            animation:fadeSlideUp 1s ease forwards;
         }
 
         .hero p{
@@ -136,6 +142,31 @@
             font-size:1.1rem;
             margin:0 auto;
             line-height:1.8;
+            opacity:0;
+            animation:fadeSlideUp 1s ease forwards;
+            animation-delay:0.3s;
+        }
+
+        @keyframes fadeSlideUp{
+            from{
+                opacity:0;
+                transform:translateY(24px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce){
+            .hero h1,
+            .hero p,
+            .reveal{
+                animation:none !important;
+                opacity:1 !important;
+                transform:none !important;
+                transition:none !important;
+            }
         }
 
         .hero .hero-actions{
@@ -178,6 +209,17 @@
 
         section{
             padding:60px 10%;
+        }
+
+        .reveal{
+            opacity:0;
+            transform:translateY(30px);
+            transition:opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible{
+            opacity:1;
+            transform:translateY(0);
         }
 
         .section-title{
@@ -249,7 +291,8 @@
         }
 
         .gallery-item:hover{
-            transform:translateY(-5px);
+            transform:translateY(-5px) scale(1.02);
+            box-shadow:0 10px 20px rgba(0,0,0,0.15);
         }
 
         .gallery-item img,
@@ -323,6 +366,7 @@
 
         button:hover{
             background:#333;
+            transform:scale(1.02);
         }
 
         /* FOOTER */
@@ -486,11 +530,11 @@
 
     <section id="sobre">
 
-        <h2 class="section-title">
+        <h2 class="section-title reveal">
             Nossa História
         </h2>
 
-        <div class="about-content">
+        <div class="about-content reveal">
 
             <div class="about-text">
 
@@ -521,11 +565,11 @@
 
     <section id="professores">
 
-        <h2 class="section-title">
+        <h2 class="section-title reveal">
             Professores
         </h2>
 
-        <div class="gallery-grid">
+        <div class="gallery-grid reveal">
 
             <div class="gallery-item">
                 <img src="https://placehold.co/300x300" alt="">
@@ -556,11 +600,11 @@
 
     <section id="projetos">
 
-        <h2 class="section-title">
+        <h2 class="section-title reveal">
             Projetos
         </h2>
 
-        <div class="gallery-grid">
+        <div class="gallery-grid reveal">
 
             <div class="gallery-item">
                 <h3>Feira de Ciências</h3>
@@ -585,11 +629,11 @@
 
     <section id="galeria">
 
-        <h2 class="section-title">
+        <h2 class="section-title reveal">
             Galeria Geral
         </h2>
 
-        <div class="gallery-grid">
+        <div class="gallery-grid reveal">
 
             <div class="gallery-item">
 
@@ -652,7 +696,7 @@
 
     <section id="contato" class="contact-section">
 
-        <h2 class="section-title">
+        <h2 class="section-title reveal">
             Contribua com a História
         </h2>
 
@@ -734,6 +778,26 @@
 
             this.reset();
 
+        });
+
+        // Anima seções conforme aparecem na tela
+        const elementosAnimados = document.querySelectorAll(".reveal");
+
+        const observador = new IntersectionObserver(function(entradas){
+
+            entradas.forEach(function(entrada){
+
+                if(entrada.isIntersecting){
+                    entrada.target.classList.add("visible");
+                    observador.unobserve(entrada.target);
+                }
+
+            });
+
+        }, { threshold:0.15 });
+
+        elementosAnimados.forEach(function(el){
+            observador.observe(el);
         });
 
     </script>
