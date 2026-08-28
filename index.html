@@ -109,14 +109,37 @@
             padding:20px;
         }
 
-        .hero video{
+        .hero-slideshow{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            z-index:-2;
+        }
+
+        .hero-slideshow img{
             position:absolute;
             top:0;
             left:0;
             width:100%;
             height:100%;
             object-fit:cover;
-            z-index:-2;
+            opacity:0;
+            animation:slideshowFade 20s infinite;
+        }
+
+        .hero-slideshow img:nth-child(1){ animation-delay:0s; }
+        .hero-slideshow img:nth-child(2){ animation-delay:5s; }
+        .hero-slideshow img:nth-child(3){ animation-delay:10s; }
+        .hero-slideshow img:nth-child(4){ animation-delay:15s; }
+
+        @keyframes slideshowFade{
+            0%{ opacity:0; }
+            5%{ opacity:1; }
+            25%{ opacity:1; }
+            30%{ opacity:0; }
+            100%{ opacity:0; }
         }
 
         .hero .overlay{
@@ -296,16 +319,160 @@
         }
 
         .gallery-item img,
-        .gallery-item iframe{
+        .gallery-item video{
             width:100%;
             height:200px;
             border-radius:5px;
             object-fit:cover;
         }
 
+        #galeria .gallery-grid{
+            grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+            gap:12px;
+        }
+
+        #galeria .gallery-item{
+            padding:6px;
+        }
+
+        #galeria .gallery-item img,
+        #galeria .gallery-item video{
+            height:140px;
+        }
+
+        .galeria-layout{
+            display:flex;
+            gap:24px;
+            align-items:center;
+            flex-wrap:wrap;
+            justify-content:center;
+        }
+
+        .video-destaque{
+            flex:1 1 380px;
+            max-width:420px;
+            background:white;
+            padding:10px;
+            border-radius:10px;
+            box-shadow:0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .video-destaque video{
+            width:100%;
+            height:auto;
+            border-radius:5px;
+            display:block;
+        }
+
+        .fotos-grid{
+            flex:2 1 420px;
+            display:grid;
+            grid-template-columns:repeat(3, 1fr);
+            gap:10px;
+        }
+
+        .fotos-grid .gallery-item img{
+            height:120px;
+        }
+
+        @media(max-width:900px){
+
+            .galeria-layout{
+                flex-direction:column;
+            }
+
+            .video-destaque{
+                max-width:100%;
+                width:100%;
+            }
+
+            .fotos-grid{
+                width:100%;
+                grid-template-columns:repeat(2, 1fr);
+            }
+        }
+
         .caption{
             margin-top:10px;
             text-align:center;
+        }
+
+        .professor-historia{
+            margin-top:10px;
+            padding-top:10px;
+            border-top:1px solid #e0e0e0;
+            font-size:0.9rem;
+            text-align:left;
+            color:#444;
+        }
+
+        .professor-historia strong{
+            display:block;
+            color:var(--azul-principal);
+            margin-bottom:4px;
+        }
+
+        /* ABAS DOS PROFESSORES */
+
+        .professor-tabs{
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-bottom:30px;
+        }
+
+        .tab-btn{
+            padding:10px 22px;
+            border:2px solid var(--azul-principal);
+            background:white;
+            color:var(--azul-principal);
+            border-radius:999px;
+            font-weight:600;
+            font-size:0.95rem;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .tab-btn:hover{
+            background:var(--cinza-claro);
+        }
+
+        .tab-btn.active{
+            background:var(--azul-principal);
+            color:white;
+        }
+
+        .professor-painel{
+            max-width:460px;
+            margin:0 auto;
+        }
+
+        .tab-conteudo{
+            display:none;
+            background:white;
+            padding:15px;
+            border-radius:10px;
+            box-shadow:0 4px 6px rgba(0,0,0,0.1);
+            animation:fadeSlideUp 0.5s ease;
+        }
+
+        .tab-conteudo.active{
+            display:block;
+        }
+
+        .professor-fotos{
+            display:grid;
+            grid-template-columns:repeat(2, 1fr);
+            gap:8px;
+        }
+
+        .professor-fotos img{
+            width:100%;
+            height:220px;
+            border-radius:5px;
+            object-fit:contain;
+            background:var(--cinza-claro);
         }
 
         /* FORM */
@@ -449,7 +616,7 @@
             }
 
             .gallery-item img,
-            .gallery-item iframe{
+            .gallery-item video{
                 height:110px;
             }
 
@@ -507,13 +674,16 @@
 
     </header>
 
-    <!-- BANNER EM VÍDEO -->
+    <!-- BANNER COM SLIDESHOW DE FOTOS -->
 
     <section id="inicio" class="hero">
 
-        <video autoplay muted loop playsinline>
-            <source src="banner.mp4" type="video/mp4">
-        </video>
+        <div class="hero-slideshow">
+            <img src="slideshow.jpeg" alt="Foto da turma 1">
+            <img src="slideshow 1.jpeg" alt="Foto da turma 2">
+            <img src="slideshow 2.jpeg" alt="Foto da turma 3">
+            <img src="slideshow 4.jpeg" alt="Foto da turma 4">
+        </div>
 
         <div class="overlay"></div>
 
@@ -552,7 +722,7 @@
 
             <div class="about-image">
 
-                <img src="https://placehold.co/600x400/003366/white?text=Foto+da+Turma"
+                <img src="foto da turma.jpeg"
                 alt="Foto da turma">
 
             </div>
@@ -569,27 +739,349 @@
             Professores
         </h2>
 
-        <div class="gallery-grid reveal">
+        <div class="professor-tabs reveal">
 
-            <div class="gallery-item">
-                <img src="https://placehold.co/300x300" alt="">
+            <button class="tab-btn active" data-tab="professor1">Professor(a) 1</button>
+            <button class="tab-btn" data-tab="professor2">Professor(a) 2</button>
+            <button class="tab-btn" data-tab="professor3">Professor(a) 3</button>
+            <button class="tab-btn" data-tab="professor4">Professor(a) 4</button>
+            <button class="tab-btn" data-tab="professor5">Professor(a) 5</button>
+
+        </div>
+
+        <div class="professor-painel">
+
+            <div class="tab-conteudo active" id="professor1">
+                <div class="professor-fotos">
+                    <img src="professor 1.jpeg" alt="Foto 1 do Professor 1">
+                    <img src="professor 1.4.jpeg" alt="Foto 2 do Professor 1">
+                    <img src="professor 1.2.jpeg" alt="Foto 3 do Professor 1">
+                    <img src="professor 1.3.jpeg" alt="Foto 4 do Professor 1">
+                </div>
                 <div class="caption">
                     Professor(a) 1
                 </div>
+                <p class="professor-historia">
+                    <strong>História do Professor Paulo Marques:</strong>
+                    Nossa história com o professor Paulo Marques
+
+Toda turma tem professores que ensinam conteúdos. Mas também existem aqueles que acabam fazendo parte da história que levaremos para a vida. O professor Paulo Marques é um desses professores.
+
+Paulo chegou à nossa turma ainda no finalzinho do primeiro ano. Naquela época, ainda éramos duas turmas separadas e existia até uma certa rivalidade entre nós. Mal imaginávamos que, pouco tempo depois, aquelas duas turmas se tornariam uma só e, mais do que isso, se transformariam em uma verdadeira família.
+
+Quando Paulo chegou, encontrou praticamente duas dimensões: de um lado, uma sala tranquila, organizada e em paz; do outro, um verdadeiro caos. 😂
+
+Ele ainda estava conhecendo a logística de cada aluno, tentando entender nossas personalidades e descobrir como lidar com aquela turma tão diferente.
+
+Então chegou o segundo ano.
+
+E veio a junção das turmas.
+
+Para nós, alunos, foi um processo de adaptação. Para Paulo, também. De repente, aquilo que antes eram duas salas passou a ser uma só, com muito mais gente, personalidades diferentes e, claro, muito mais caos.
+
+Foi nessa caminhada que conhecemos um dos nossos maiores desafios: o temido banco de dados.
+
+Ah, o banco de dados...
+
+Foram tantos momentos em frente ao monitor tentando entender o código, procurando onde estava o erro e, muitas vezes, quase chorando de desespero. 😂
+
+A gente programava, apagava, fazia de novo, procurava o erro e, quando finalmente parecia que tudo estava certo...
+
+Não funcionava.
+
+Mas chegamos à segunda unidade e alguma coisa começou a mudar. Nós começamos a nos entender como turma, começamos a trabalhar melhor juntos e, aos poucos, fomos percebendo que também éramos capazes de programar, resolver provas e enfrentar aquilo que antes parecia impossível.
+
+E, no meio de tudo isso, estava Paulo com sua calma.
+
+Com aquela fala mansa e tranquila, ele nos ensinou que, na maioria das vezes, antes de procurar desesperadamente o erro no código, talvez fosse melhor simplesmente sentar, respirar e tomar uma bela jarra de café. ☕😂
+
+Com Paulo, aprendemos que nem tudo precisa ser resolvido no desespero.
+
+Às vezes, é preciso parar.
+
+Respirar.
+
+Pensar.
+
+E tentar novamente.
+
+No final, Paulo também esteve presente no desenvolvimento de uma das ideias que marcou nossa trajetória: o Túnel da Computação.
+
+Uma forma diferente e lúdica de apresentar nosso curso, contando a história da computação através de um túnel e mostrando, de maneira criativa, como a tecnologia evoluiu ao longo do tempo.
+
+E em 2026, nossa história ganhou mais um capítulo.
+
+Paulo voltou a ser nosso professor na área de programação e também se tornou orientador dessa ideia. Ele acreditou no projeto, apoiou o documentário e continuou acompanhando nossa evolução.
+
+E hoje estamos aqui, contando essa história.
+
+Quando olhamos para trás, percebemos que aquele professor que chegou encontrando duas realidades completamente diferentes acabou acompanhando uma turma que também mudou completamente.
+
+De duas turmas separadas para uma família.
+
+Do caos para a organização.
+
+Do medo do código para a coragem de apresentar nossos projetos.
+
+Do banco de dados que fazia a gente quase chorar para a certeza de que conseguimos aprender.
+
+E, principalmente, aprendemos que programação nem sempre vai funcionar de primeira.
+
+Mas hoje já sabemos:
+
+não precisa morder o monitor. 😂
+
+É só respirar, tomar um café, procurar o erro e tentar novamente.
+
+Professor Paulo, obrigado por fazer parte da nossa história, por sua paciência, sua calma, seus ensinamentos e por acreditar nas nossas ideias.
+
+Essa é a nossa história com Paulo Marques.
+
+Uma história de café, códigos, erros, tentativas, aprendizados e, acima de tudo, evolução.
+
+Porque somos Os Inesquecíveis — e essa história também tem um pouco de você. ❤️☕💻
+                </p>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://placehold.co/300x300" alt="">
+            <div class="tab-conteudo" id="professor2">
+                <div class="professor-fotos">
+                    <img src="professor 2.jpeg" alt="Foto 1 do Professor 2">
+                    <img src="professor 2.1.jpeg" alt="Foto 2 do Professor 2">
+                    <img src="professor 2.2.jpeg" alt="Foto 3 do Professor 2">
+                    <img src="professor 2.3.jpeg" alt="Foto 4 do Professor 2">
+                </div>
                 <div class="caption">
                     Professor(a) 2
                 </div>
+                <p class="professor-historia">
+                    <strong>História do Professor Jonas Evangelista da Silva:</strong>
+                    Nossa história com o professor Jonas Evangelista da Silva
+
+Algumas pessoas entram em nossas vidas para ensinar uma matéria. Outras entram para nos ensinar sobre nós mesmos. O professor Jonas Evangelista da Silva foi muito além de um professor para a nossa turma. Ele se tornou parte da nossa história, do nosso crescimento e, principalmente, da nossa transformação.
+
+Nós somos a primeira turma de Informática do CIEBTEC. Começamos nossa caminhada juntos e, no segundo ano do Técnico em Informática, chegou o professor Jonas. Logo de início, ele encontrou uma turma que ainda estava se adaptando à junção das salas, cheia de personalidades diferentes, ideias, barulho e, para falar a verdade, um verdadeiro caos. Talvez, naquela primeira impressão, ele tenha pensado: “Será que eu vou dar conta dessa turma?” 😂
+
+No começo, ele nos achou uma turma difícil. Às vezes, brincava dizendo que iria “zerar a sala” para ver se conseguia dar um jeito em nós. E um dia, ele realmente nos deu um susto que jamais esqueceremos: zerou a turma.
+
+Foi um desespero. Teve choro, preocupação, mães ligando, alunos sem saber o que fazer... parecia que tudo tinha acabado. No final, descobrimos que aquilo era uma lição. E, olhando para trás, entendemos que aquela atitude nos ensinou algo que levamos até hoje: respeito, responsabilidade e limites entre professor e aluno.
+
+Também nunca vamos esquecer da nossa primeira apresentação para o professor Jonas. Alguns apresentaram em grupos, todos tiveram que falar, mas o nervosismo tomava conta. Tinha gente que tremia só de chegar na frente da sala. Éramos inseguros, tínhamos medo de errar e ainda não sabíamos do que éramos capazes.
+
+Hoje, quando olhamos para a nossa turma apresentando, parece até outra história. Somos uma turma que consegue se organizar, falar em público, apresentar projetos e enfrentar desafios. E uma das pessoas que abriu essa porta para nós foi justamente o professor Jonas.
+
+Com o tempo, aquilo que começou com dificuldades foi se transformando em amizade, confiança e carinho. Jonas começou a enxergar nossas qualidades, nosso potencial e aquilo que muitas vezes nós mesmos não conseguíamos enxergar. Ele nos ajudou a criar projetos, desenvolver ideias e acreditar que podíamos fazer mais.
+
+Porque essa é uma das maiores características do professor Jonas: ele torce pelo crescimento dos seus alunos. Ele quer ver seus alunos evoluindo, conquistando seus sonhos, entrando na faculdade e alcançando aquilo que merecem.
+
+E então chegou o final da terceira unidade. Foi um verdadeiro caos de sentimentos. A sala que um dia ele dizia que não suportava descobriu que, na verdade, já existia ali um amor enorme. Nós nos importávamos com ele. Sabíamos do corte de cabelo, cuidávamos até do celular dele 😂 e criamos uma relação que ultrapassava a sala de aula.
+
+Até que tivemos um contratempo: Jonas saiu.
+
+E aí percebemos o tamanho do espaço que ele já ocupava em nossa turma. Ficamos desesperados. Choramos. Pensamos que talvez nunca mais tivéssemos uma aula com ele. Parecia que uma parte da nossa caminhada tinha sido interrompida.
+
+Mas Deus é bom.
+
+E, em 2026, o professor Jonas voltou para nós.
+
+Voltou para acompanhar Os Inesquecíveis, voltou como nosso professor, como orientador do nosso estágio e, principalmente, como alguém que continua torcendo para que cada um de nós conquiste seu lugar no mundo e chegue à faculdade.
+
+Hoje, quando chamamos Jonas de nosso Divo, não é apenas uma brincadeira. É uma forma carinhosa de dizer o quanto ele se tornou especial para nós.
+
+Ele nos ensinou que temos valor. Ensinou-nos a reconhecer nosso potencial. Ensinou que errar faz parte, que limites são necessários e que crescer exige esforço.
+
+E talvez a nossa primeira apresentação para ele tenha sido apenas o começo de tudo.
+
+Se pudéssemos voltar no tempo e mostrar àquela turma nervosa, que mal conseguia apresentar um trabalho, tudo o que seríamos anos depois, talvez nem acreditássemos.
+
+Porque nós evoluímos.
+
+Nós crescemos.
+
+Nós aprendemos.
+
+E, no meio dessa caminhada, tivemos alguém que acreditou em nós.
+
+Professor Jonas, essa é a nossa história com você. Uma história que começou no caos, passou por lágrimas, broncas, apresentações, projetos, desafios, risadas e despedidas, mas que encontrou no caminho algo muito maior: respeito, amizade, admiração e amor.
+
+Hoje, nós não somos mais aquela turma que você encontrou no segundo ano.
+
+Somos Os Inesquecíveis.
+
+E parte do que somos também carrega um pouco de você.
+
+Obrigado por acreditar em nós, por nos desafiar, por nos ensinar e, principalmente, por enxergar em cada um de nós um potencial que muitas vezes nem nós mesmos conseguíamos enxergar.
+
+Essa é a nossa história.
+Essa é a nossa caminhada.
+Essa é a nossa história com Jonas. ❤️
+                </p>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://placehold.co/300x300" alt="">
+            <div class="tab-conteudo" id="professor3">
+                <div class="professor-fotos">
+                    <img src="professor 3.jpeg" alt="Foto 1 do Professor 3">
+                    <img src="professor 3.1.jpeg" alt="Foto 2 do Professor 3">
+                </div>
                 <div class="caption">
                     Professor(a) 3
                 </div>
+                <p class="professor-historia">
+                    <strong>História do Professor 3:</strong>
+                    Professor Álvaro — O início da nossa jornada
+
+Toda história tem um começo. E, para nós, a história da primeira turma de Informática começou com pessoas que acreditaram em nós antes mesmo de sabermos exatamente onde aquela caminhada iria nos levar.
+
+E quando voltamos no tempo, é impossível não lembrar de Álvaro.
+
+Parece que foi ontem que ele entrou naquela sala pela primeira vez. Com sua barba ruiva, sempre vestido de preto e com aquele jeito único que, desde o início, já deixava claro que suas aulas não seriam apenas mais uma parte da nossa rotina. E, claro, como esquecer da famosa brincadeira de que tinha apenas 18 anos? 😂 Nós acreditamos — ou pelo menos fingimos acreditar — e ele conseguiu nos fazer cair direitinho naquela história.
+
+Com o tempo, Álvaro deixou de ser apenas o professor que estava ali para nos ensinar informática. Ele passou a fazer parte do começo de uma história que hoje entendemos o quanto foi importante.
+
+Foi com ele que tivemos nossos primeiros contatos com aquilo que se tornaria parte da nossa formação: algoritmos, fluxogramas, lógica de programação e os primeiros passos no mundo da tecnologia. No começo, algumas coisas pareciam difíceis, confusas e até impossíveis. Mas, aos poucos, fomos percebendo que aprender informática também era aprender a pensar, tentar, errar, corrigir e tentar novamente.
+
+E talvez essa tenha sido uma das maiores lições que Álvaro deixou.
+
+Porque ele não ensinava apenas conteúdo. Ele criava momentos.
+
+Quem viveu aquela época certamente lembra das provas sendo corrigidas ao vivo, daqueles segundos de tensão, das expressões de preocupação e, depois, das risadas. Era uma mistura de nervosismo, aprendizado e diversão que só quem esteve naquela sala consegue entender.
+
+E, entre uma explicação e outra, ainda tivemos direito à receita do bolo. Porque, de alguma forma, até isso virou parte da nossa história. 😂
+
+Álvaro tinha uma maneira própria de transformar coisas simples em lembranças que permanecem. Como esquecer o dia 18 de maio, quando ele apareceu usando uma camisa laranja? Talvez, para qualquer outra pessoa, fosse apenas uma camisa. Para nós, tornou-se mais uma daquelas pequenas lembranças que o tempo passa, mas a memória insiste em guardar.
+
+E foi assim que, mesmo ficando conosco apenas durante o primeiro ano, Álvaro conseguiu ocupar um espaço muito maior do que o tempo poderia explicar.
+
+Sua saída não foi fácil.
+
+Nós choramos. Sentimos falta. Ficou aquele sentimento de que alguém que fazia parte do início da nossa caminhada estava seguindo outro caminho, enquanto nós continuávamos tentando descobrir qual seria o nosso.
+
+Mas hoje, olhando para trás, entendemos que algumas pessoas não precisam permanecer durante toda a caminhada para fazer parte de toda a história.
+
+Álvaro esteve no começo.
+
+E estar no começo de algo tão importante significa muito.
+
+Ele foi um dos primeiros a acreditar naquela turma, um dos primeiros a ensinar que por trás de uma tela, de um código e de uma sequência de comandos existe algo muito maior: a capacidade humana de criar, solucionar problemas e transformar ideias em realidade.
+
+Talvez ele nem imaginasse, naquela época, o quanto suas aulas ficariam guardadas em nossa memória. Talvez não soubesse que aqueles algoritmos, aqueles fluxogramas, aquelas provas e aquelas brincadeiras se transformariam, anos depois, em lembranças que contaríamos com carinho.
+
+Hoje somos diferentes daquela turma que ele conheceu.
+
+Crescemos. Aprendemos. Erramos. Recomeçamos. Construímos amizades, enfrentamos desafios e chegamos cada vez mais perto do fim dessa jornada.
+
+Mas existe uma parte de nós que ainda está naquela primeira sala, descobrindo o que era ser uma turma de Informática.
+
+E nessa lembrança, Álvaro estará sempre presente.
+
+Porque professores podem passar por nossas vidas durante um semestre, um ano ou alguns anos. Mas aquilo que deixam em nós pode permanecer para sempre.
+
+Álvaro não foi apenas o professor que nos ensinou os primeiros conceitos da informática.
+
+Ele foi parte do início.
+
+E todo início merece ser lembrado com carinho.
+
+Hoje, quando olhamos para tudo o que construímos, percebemos que aquela primeira aula foi muito mais do que uma aula. Foi o primeiro capítulo de uma história que ainda estamos escrevendo.
+
+E se hoje podemos olhar para trás e dizer que chegamos tão longe, é porque, em algum momento, alguém esteve lá para nos mostrar o primeiro caminho.
+
+Obrigado, Álvaro, por ter sido parte do nosso começo.
+
+Por cada ensinamento, cada risada, cada momento de tensão, cada brincadeira e, principalmente, por ter deixado em nós uma marca que o tempo não conseguiu apagar.
+
+Você esteve apenas no primeiro ano.
+
+Mas o que você deixou ficou para todos os anos.
+
+E talvez seja exatamente isso que significa ser professor:
+
+não permanecer para sempre na sala de aula, mas permanecer para sempre na história de quem passou por ela.
+
+Álvaro, você foi o início da nossa jornada.
+E todo começo inesquecível merece ser lembrado para sempre. ❤️
+                </p>
+            </div>
+
+            <div class="tab-conteudo" id="professor4">
+                <div class="professor-fotos">
+                    <img src="professor 4.jpeg" alt="Foto 1 do Professor 4">
+                    <img src="professor 4.1.jpeg" alt="Foto 2 do Professor 4">
+                    <img src="professor 4.2.jpeg" alt="Foto 3 do Professor 4">
+                    <img src="professor 4.3.jpeg" alt="Foto 4 do Professor 4">
+                </div>
+                <div class="caption">
+                    Professor(a) 4
+                </div>
+                <p class="professor-historia">
+                    <strong>História do Professor 4:</strong>
+                    Professor Matheus – A base da nossa caminhada
+
+O professor Matheus foi um dos primeiros professores da nossa jornada no curso de Informática. Foi com ele que começamos a construir os conhecimentos que carregamos até hoje. Aprendemos os fundamentos de redes, demos os primeiros passos na programação e criamos nosso primeiro programa em Portugol, o clássico e inesquecível "Olá, Mundo!".
+
+Suas aulas sempre valiam a pena. Eram momentos de aprendizado, descobertas e muita prática. O senhor nunca deixava uma aula ser igual à outra. Sempre trazia algo novo, equipamentos para avaliarmos, experiências diferentes e atividades que tornavam o aprendizado muito mais interessante.
+
+Quem não se lembra da maquete de nuvem em formato de estrela? Foi com o senhor que aprofundamos os conhecimentos de redes e entendemos, na prática, como funcionavam os equipamentos e as conexões. Hoje, quando recebemos elogios pela nossa base em redes, sabemos exatamente de onde ela veio: dos ensinamentos que recebemos nas suas aulas.
+
+Como éramos a primeira turma, muitas vezes não tínhamos materiais suficientes para aprender na prática. Então, fomos à luta. Visitamos lojas de informática, pedimos doações de monitores antigos, CPUs, teclados, mouses, memórias RAM e tudo o que pudesse nos ajudar a aprender. Com esses equipamentos, desmontávamos, montávamos, analisávamos defeitos e tentávamos consertar. Foram desafios que nos fizeram crescer e evoluir.
+
+Passamos por muitas experiências, aprendemos com os erros, comemoramos os acertos e construímos uma base sólida para nossa formação. E grande parte disso aconteceu graças à sua dedicação e ao seu compromisso com o nosso aprendizado.
+
+No segundo ano, infelizmente, o senhor já não estava mais conosco. Tivemos que nos despedir de um professor incrível, alguém que marcou profundamente o início da nossa trajetória. Sua ausência foi sentida, mas os ensinamentos permaneceram.
+
+Professor Matheus, muito obrigado por tudo. O senhor é uma peça fundamental do quebra-cabeça que formou a nossa turma. Seu legado continua vivo em cada conhecimento que carregamos e em cada conquista que alcançamos.
+
+Sentimos sua falta e seremos eternamente gratos por tudo o que nos ensinou.
+                </p>
+            </div>
+
+            <div class="tab-conteudo" id="professor5">
+                <div class="professor-fotos">
+                    <img src="professor 5.jpeg" alt="Foto 1 do Professor 5">
+                    <img src="professor 5.1.jpeg" alt="Foto 2 do Professor 5">
+                    <img src="professor 5.2.jpeg" alt="Foto 3 do Professor 5">
+                    <img src="professor 5.3.jpeg" alt="Foto 4 do Professor 5">
+                </div>
+                <div class="caption">
+                    Professor(a) 5
+                </div>
+                <p class="professor-historia">
+                    <strong>História do Professor 5:</strong>
+                    Professora Nilmecy — A nossa madrinha, nossa inspiração
+
+Bom, o que dizer sobre essa professora que está conosco desde o começo?
+
+Professora Nilmecy esteve presente desde os primeiros passos da nossa turma. No início, ainda éramos duas turmas, cada uma seguindo seu caminho, mas, com o tempo, seus projetos foram nos aproximando. E a outra turma também acabou se envolvendo em muitas dessas experiências que marcaram nossa caminhada.
+
+Nil sempre nos deu algo muito importante: a oportunidade de mostrar quem somos e descobrir do que somos capazes. Seus projetos nunca foram apenas atividades escolares. Eram oportunidades para nós, alunos, descobrirmos talentos, desenvolvermos habilidades e percebermos que podíamos fazer muito mais do que imaginávamos.
+
+Ela é aquela professora de História que não ensina apenas História. Ensina caráter, responsabilidade, amor, respeito e, de vez em quando, dá aqueles famosos puxões de orelha que, na hora, talvez não fossem tão agradáveis… mas que hoje sabemos que também fizeram parte do nosso crescimento. 😂
+
+E quando a Professora Nil chega à sala, já sabemos: essa é uma aula que não podemos faltar de jeito nenhum! Sempre tem alguma coisa nova, algum projeto, alguma ideia ou algum desafio esperando por nós.
+
+Com o tempo, aprendemos com ela que não precisamos nos limitar ao que o sistema oferece. Precisamos ir além. Precisamos buscar, criar, participar e acreditar que a educação realmente pode transformar vidas — inclusive as nossas.
+
+E como não falar da nossa brincadeira com a famosa “cabeção da Nil”? 😂
+A gente brinca que existe tanta informação naquela cabeça que, se fosse possível, ela poderia doar um pedacinho para cada aluno e ainda sobraria conhecimento!
+
+Mas, por trás de todas as brincadeiras, existe uma verdade enorme: Nil sempre esteve ao nosso lado.
+
+Talvez, no começo, tudo tenha sido um grande caos. Duas turmas, muitas personalidades, muitas ideias e uma professora tentando acompanhar tudo isso. Mas, com o tempo, aquilo que começou como uma caminhada cheia de desafios se transformou em uma relação de carinho, respeito e admiração.
+
+Hoje, temos a honra de chamá-la de nossa madrinha.
+
+E não é por acaso. Nós nos envolvemos nos seus projetos, colocamos nossos nomes, fazemos cards, divulgamos, participamos e damos o nosso melhor. Porque aprendemos que quando alguém acredita na gente, também precisamos acreditar em nós mesmos.
+
+Professora Nil, que dádiva foi ter a senhora conosco nessa história.
+
+Obrigada por cada projeto, cada oportunidade, cada ensinamento, cada puxão de orelha, cada conselho e, principalmente, por nunca nos fazer acreditar que nossos sonhos eram grandes demais.
+
+Que, por onde formos, possamos carregar um pouco dessa vontade de ir além que a senhora nos ensinou.
+
+A senhora faz parte da nossa história, da nossa formação e, acima de tudo, do nosso coração.
+
+Com muito amor e carinho,
+3º Ano de Informática — Os Inesquecíveis.
+                </p>
             </div>
 
         </div>
@@ -633,36 +1125,14 @@
             Galeria Geral
         </h2>
 
-        <div class="gallery-grid reveal">
+        <div class="galeria-layout reveal">
 
-            <div class="gallery-item">
+            <div class="video-destaque">
 
-                <img src="https://placehold.co/400x300/005cbf/white?text=Feira+de+Ciências">
-
-                <div class="caption">
-                    Projeto na Feira de Ciências
-                </div>
-
-            </div>
-
-            <div class="gallery-item">
-
-                <img src="https://placehold.co/400x300/005cbf/white?text=Dia+da+Pizza">
-
-                <div class="caption">
-                    Dia da Pizza da Turma
-                </div>
-
-            </div>
-
-            <div class="gallery-item">
-
-                <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="Vídeo da turma"
-                frameborder="0"
-                allowfullscreen>
-                </iframe>
+                <video controls>
+                    <source src="video da turma.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo em HTML5.
+                </video>
 
                 <div class="caption">
                     Vídeo Especial da Turma
@@ -670,20 +1140,30 @@
 
             </div>
 
-            <div class="gallery-item"
-            style="display:flex;justify-content:center;align-items:center;height:250px;text-align:center;">
+            <div class="fotos-grid">
 
-                <div>
+                <div class="gallery-item">
+                    <img src="galeria geral 1.jpeg" alt="Foto da turma">
+                </div>
 
-                    <strong>
-                        "O dia que o professor chegou atrasado
-                        e a sala virou uma festa!"
-                    </strong>
+                <div class="gallery-item">
+                    <img src="galeria 1.2.jpeg" alt="Foto da turma">
+                </div>
 
-                    <br><br>
+                <div class="gallery-item">
+                    <img src="galeria 1.3.jpeg" alt="Foto da turma">
+                </div>
 
-                    <small>- João Pedro</small>
+                <div class="gallery-item">
+                    <img src="galeria 1.6.jpeg" alt="Foto da turma">
+                </div>
 
+                <div class="gallery-item">
+                    <img src="galeria 1.7.jpeg" alt="Foto da turma">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="galeria 1.9.jpeg" alt="Foto da turma">
                 </div>
 
             </div>
@@ -798,6 +1278,26 @@
 
         elementosAnimados.forEach(function(el){
             observador.observe(el);
+        });
+
+        // Troca de abas dos professores
+        const botoesAba = document.querySelectorAll(".tab-btn");
+        const conteudosAba = document.querySelectorAll(".tab-conteudo");
+
+        botoesAba.forEach(function(botao){
+
+            botao.addEventListener("click", function(){
+
+                const alvo = botao.getAttribute("data-tab");
+
+                botoesAba.forEach(function(b){ b.classList.remove("active"); });
+                conteudosAba.forEach(function(c){ c.classList.remove("active"); });
+
+                botao.classList.add("active");
+                document.getElementById(alvo).classList.add("active");
+
+            });
+
         });
 
     </script>
