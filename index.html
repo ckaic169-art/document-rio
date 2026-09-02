@@ -1,1211 +1,448 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inesquecíveis 2024-2026</title>
-
-    <style>
-
-        :root {
-            --azul-principal: #003366;
-            --azul-claro: #005cbf;
-            --preto: #1a1a1a;
-            --branco: #ffffff;
-            --cinza-claro: #f4f4f4;
-        }
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body{
-            background:var(--branco);
-            color:var(--preto);
-            line-height:1.6;
-        }
-
-        a{
-            text-decoration:none;
-            color:inherit;
-        }
-
-        ul{
-            list-style:none;
-        }
-
-        html{
-            scroll-behavior:smooth;
-        }
-
-        /* HEADER */
-
-        header{
-            background:var(--azul-principal);
-            color:var(--branco);
-            padding:1rem 5%;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            position:sticky;
-            top:0;
-            z-index:1000;
-            box-shadow:0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .brand{
-            display:flex;
-            flex-direction:column;
-            gap:2px;
-        }
-
-        .logo{
-            font-size:1.5rem;
-            font-weight:bold;
-            letter-spacing:1px;
-        }
-
-        .tagline{
-            font-size:0.9rem;
-            color:rgba(255,255,255,0.8);
-        }
-
-        nav ul{
-            display:flex;
-            gap:12px;
-            align-items:center;
-        }
-
-        nav a{
-            padding:6px 12px;
-            border-radius:999px;
-            transition:0.3s;
-            display:inline-block;
-        }
-
-        nav a:hover{
-            background:rgba(255,255,255,0.14);
-            color:#dcefff;
-            transform:translateY(-1px);
-        }
-
-        /* HERO */
-
-        .hero{
-            position:relative;
-            overflow:hidden;
-            height:60vh;
-
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            text-align:center;
-
-            color:white;
-            padding:20px;
-        }
-
-        .hero-slideshow{
-            position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            z-index:-2;
-        }
-
-        .hero-slideshow img{
-            position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            object-fit:cover;
-            opacity:0;
-            animation:slideshowFade 20s infinite;
-        }
-
-        .hero-slideshow img:nth-child(1){ animation-delay:0s; }
-        .hero-slideshow img:nth-child(2){ animation-delay:5s; }
-        .hero-slideshow img:nth-child(3){ animation-delay:10s; }
-        .hero-slideshow img:nth-child(4){ animation-delay:15s; }
-
-        @keyframes slideshowFade{
-            0%{ opacity:0; }
-            5%{ opacity:1; }
-            25%{ opacity:1; }
-            30%{ opacity:0; }
-            100%{ opacity:0; }
-        }
-
-        .hero .overlay{
-            position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background:rgba(0,51,102,.6);
-            z-index:-1;
-        }
-
-        .hero h1{
-            font-size:clamp(2.8rem, 6vw, 4.5rem);
-            margin-bottom:16px;
-            line-height:1.05;
-            opacity:0;
-            animation:fadeSlideUp 1s ease forwards;
-        }
-
-        .hero p{
-            max-width:720px;
-            font-size:1.1rem;
-            margin:0 auto;
-            line-height:1.8;
-            opacity:0;
-            animation:fadeSlideUp 1s ease forwards;
-            animation-delay:0.3s;
-        }
-
-        @keyframes fadeSlideUp{
-            from{
-                opacity:0;
-                transform:translateY(24px);
-            }
-            to{
-                opacity:1;
-                transform:translateY(0);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce){
-            .hero h1,
-            .hero p,
-            .reveal{
-                animation:none !important;
-                opacity:1 !important;
-                transform:none !important;
-                transition:none !important;
-            }
-        }
-
-        .hero .hero-actions{
-            margin-top:2rem;
-            display:flex;
-            justify-content:center;
-            flex-wrap:wrap;
-            gap:14px;
-        }
-
-        .btn{
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            padding:14px 26px;
-            border-radius:999px;
-            border:none;
-            font-weight:600;
-            cursor:pointer;
-            transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
-        }
-
-        .btn-primary{
-            background:#ffb703;
-            color:#003366;
-        }
-
-        .btn-secondary{
-            background:rgba(255,255,255,0.16);
-            color:white;
-            border:1px solid rgba(255,255,255,0.35);
-        }
-
-        .btn:hover{
-            transform:translateY(-2px);
-            box-shadow:0 14px 24px rgba(0,0,0,0.2);
-        }
-
-        /* SEÇÕES */
-
-        section{
-            padding:60px 10%;
-        }
-
-        .reveal{
-            opacity:0;
-            transform:translateY(30px);
-            transition:opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.visible{
-            opacity:1;
-            transform:translateY(0);
-        }
-
-        .section-title{
-            text-align:center;
-            font-size:2rem;
-            color:var(--azul-principal);
-            margin-bottom:40px;
-        }
-
-        .section-title::after{
-            content:'';
-            width:60px;
-            height:4px;
-            background:var(--preto);
-            display:block;
-            margin:10px auto;
-        }
-
-        /* SOBRE */
-
-        .about-content{
-            display:flex;
-            flex-wrap:wrap;
-            gap:30px;
-            align-items:center;
-        }
-
-        .about-text{
-            flex:1;
-            min-width:300px;
-        }
-
-        .about-text p{
-            margin-bottom:12px;
-        }
-
-        .about-image{
-            flex:1;
-            min-width:300px;
-            text-align:center;
-        }
-
-        .about-image img{
-            width:100%;
-            max-width:500px;
-            border-radius:10px;
-            border:4px solid var(--azul-principal);
-            box-shadow:0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        /* GALERIA */
-
-        #galeria{
-            background:var(--cinza-claro);
-        }
-
-        .gallery-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
-            gap:20px;
-        }
-
-        .gallery-item{
-            background:white;
-            padding:10px;
-            border-radius:10px;
-            box-shadow:0 4px 6px rgba(0,0,0,0.1);
-            transition:0.3s;
-        }
-
-        .gallery-item:hover{
-            transform:translateY(-5px) scale(1.02);
-            box-shadow:0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .gallery-item img,
-        .gallery-item video{
-            width:100%;
-            height:200px;
-            border-radius:5px;
-            object-fit:cover;
-        }
-
-        #galeria .gallery-grid{
-            grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
-            gap:12px;
-        }
-
-        #galeria .gallery-item{
-            padding:6px;
-        }
-
-        #galeria .gallery-item img,
-        #galeria .gallery-item video{
-            height:200px;
-            object-fit:contain;
-            background:var(--cinza-claro);
-        }
-
-        .galeria-layout{
-            display:flex;
-            gap:24px;
-            align-items:center;
-            flex-wrap:wrap;
-            justify-content:center;
-        }
-
-        .video-destaque{
-            flex:1 1 380px;
-            max-width:420px;
-            background:white;
-            padding:10px;
-            border-radius:10px;
-            box-shadow:0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .video-destaque video{
-            width:100%;
-            height:auto;
-            border-radius:5px;
-            display:block;
-        }
-
-        .fotos-grid{
-            flex:2 1 420px;
-            display:grid;
-            grid-template-columns:repeat(3, 1fr);
-            gap:10px;
-        }
-
-        .fotos-grid .gallery-item img{
-            height:120px;
-        }
-
-        @media(max-width:900px){
-
-            .galeria-layout{
-                flex-direction:column;
-            }
-
-            .video-destaque{
-                max-width:100%;
-                width:100%;
-            }
-
-            .fotos-grid{
-                width:100%;
-                grid-template-columns:repeat(2, 1fr);
-            }
-        }
-
-        .caption{
-            margin-top:10px;
-            text-align:center;
-        }
-
-        .professor-historia{
-            margin-top:10px;
-            padding-top:10px;
-            border-top:1px solid #e0e0e0;
-            font-size:0.9rem;
-            text-align:left;
-            color:#444;
-        }
-
-        .professor-historia strong{
-            display:block;
-            color:var(--azul-principal);
-            margin-bottom:4px;
-        }
-
-        /* ABAS DOS PROFESSORES */
-
-        .professor-tabs{
-            display:flex;
-            justify-content:center;
-            flex-wrap:wrap;
-            gap:10px;
-            margin-bottom:30px;
-        }
-
-        .tab-btn{
-            padding:10px 22px;
-            border:2px solid var(--azul-principal);
-            background:white;
-            color:var(--azul-principal);
-            border-radius:999px;
-            font-weight:600;
-            font-size:0.95rem;
-            cursor:pointer;
-            transition:0.3s;
-        }
-
-        .tab-btn:hover{
-            background:var(--cinza-claro);
-        }
-
-        .tab-btn.active{
-            background:var(--azul-principal);
-            color:white;
-        }
-
-        .professor-painel{
-            max-width:460px;
-            margin:0 auto;
-        }
-
-        .tab-conteudo{
-            display:none;
-            background:white;
-            padding:15px;
-            border-radius:10px;
-            box-shadow:0 4px 6px rgba(0,0,0,0.1);
-            animation:fadeSlideUp 0.5s ease;
-        }
-
-        .tab-conteudo.active{
-            display:block;
-        }
-
-        .professor-fotos{
-            display:grid;
-            grid-template-columns:repeat(2, 1fr);
-            gap:8px;
-        }
-
-        .professor-fotos img{
-            width:100%;
-            height:220px;
-            border-radius:5px;
-            object-fit:contain;
-            background:var(--cinza-claro);
-        }
-
-        /* FORM */
-
-        .contact-section{
-            background:var(--azul-principal);
-            color:white;
-        }
-
-        .contact-section .section-title{
-            color:white;
-        }
-
-        .contact-section .section-title::after{
-            background:white;
-        }
-
-        form{
-            background:white;
-            color:black;
-            padding:30px;
-            border-radius:10px;
-            max-width:600px;
-            margin:auto;
-        }
-
-        .form-group{
-            margin-bottom:15px;
-        }
-
-        label{
-            display:block;
-            margin-bottom:5px;
-            font-weight:bold;
-        }
-
-        input,
-        textarea,
-        select{
-            width:100%;
-            padding:10px;
-            border:1px solid #ccc;
-            border-radius:5px;
-            font-size:1rem;
-        }
-
-        button{
-            width:100%;
-            padding:12px;
-            border:none;
-            border-radius:5px;
-            background:var(--preto);
-            color:white;
-            font-size:1rem;
-            cursor:pointer;
-            transition:0.3s;
-        }
-
-        button:hover{
-            background:#333;
-            transform:scale(1.02);
-        }
-
-        /* FOOTER */
-
-        footer{
-            background:var(--preto);
-            color:#aaa;
-            text-align:center;
-            padding:20px;
-        }
-
-        /* RESPONSIVO */
-
-        @media(max-width:768px){
-
-            header{
-                flex-direction:column;
-                gap:10px;
-                padding:0.8rem 5%;
-            }
-
-            nav ul{
-                flex-wrap:wrap;
-                justify-content:center;
-                gap:6px;
-            }
-
-            nav a{
-                padding:5px 10px;
-                font-size:0.85rem;
-            }
-
-            .brand{
-                align-items:center;
-                text-align:center;
-            }
-
-            .logo{
-                font-size:1.1rem;
-            }
-
-            .tagline{
-                font-size:0.75rem;
-            }
-
-            .hero{
-                height:40vh;
-                padding:16px;
-            }
-
-            .hero h1{
-                font-size:1.7rem;
-                margin-bottom:10px;
-            }
-
-            .hero p{
-                font-size:0.9rem;
-            }
-
-            section{
-                padding:36px 6%;
-            }
-
-            .section-title{
-                font-size:1.3rem;
-                margin-bottom:24px;
-            }
-
-            .about-content{
-                gap:16px;
-            }
-
-            .gallery-grid{
-                grid-template-columns:repeat(2, minmax(0, 1fr));
-                gap:10px;
-            }
-
-            .gallery-item{
-                padding:6px;
-            }
-
-            .gallery-item img,
-            .gallery-item video{
-                height:110px;
-            }
-
-            .caption{
-                font-size:0.8rem;
-            }
-
-            form{
-                padding:18px;
-            }
-        }
-
-        @media(max-width:420px){
-
-            .gallery-grid{
-                grid-template-columns:1fr;
-            }
-
-            .hero h1{
-                font-size:1.4rem;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inesquecíveis — Turma de Informática 2024–2026</title>
+<meta name="description" content="Uma homenagem à trajetória, aos professores e às memórias da Turma de Informática 2024–2026.">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- HEADER -->
+<!-- HEADER -->
+<header>
+  <div class="container nav-wrap">
 
-    <header>
+    <div class="brand">
+      <img src="logo do site.jpeg" alt="Logo da Turma">
+      <div class="brand-text">
+        <span class="logo">Inesquecíveis</span>
+        <span class="tagline">Turma de Informática · 2024–2026</span>
+      </div>
+    </div>
 
-        <div class="brand">
-            <div class="logo" style="display:flex;align-items:center;gap:12px;">
-                <img src="logo do site.jpeg"
-                    alt="Logo da Turma"
-                    style="width:60px;height:60px;border-radius:50%;object-fit:cover;">
-                <span>Inesquecíveis 2024-2026</span>
-            </div>
-            <div class="tagline">
-                Memórias da nossa turma e nossos melhores momentos
-            </div>
+    <input type="checkbox" id="menuToggleInput" class="menu-toggle-input">
+
+    <nav class="primary-nav">
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Nossa História</a></li>
+        <li><a href="#professores">Professores</a></li>
+        <li><a href="#momentos">Momentos</a></li>
+        <li><a href="#trailer">Trailer</a></li>
+        <li><a href="#galeria">Galeria Geral</a></li>
+        <li><a href="#timeline">Linha do Tempo</a></li>
+        <li><a href="#encerramento">Encerramento</a></li>
+        <!-- <li><a href="#contato">Contribuições</a></li> -->
+      </ul>
+    </nav>
+
+    <label for="menuToggleInput" class="menu-toggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </label>
+
+  </div>
+</header>
+
+<!-- INÍCIO -->
+<section id="inicio" class="hero">
+
+  <div class="hero-bg-glow"></div>
+
+  <div class="hero-slideshow" aria-hidden="true">
+    <img src="slideshow.jpeg" alt="">
+    <img src="slideshow 1.jpeg" alt="">
+    <img src="slideshow 2.jpeg" alt="">
+    <img src="slideshow 4.jpeg" alt="">
+  </div>
+
+  <span class="kicker">Turma de Informática · 2024 — 2026</span>
+  <h1>Momentos Inesquecíveis</h1>
+  <p>Uma história construída entre amizades, aprendizados e muitas conquistas.</p>
+
+  <div class="hero-actions">
+    <a href="#sobre" class="btn btn-primary">Conhecer nossa história</a>
+    <a href="#galeria" class="btn btn-ghost">Ver a galeria</a>
+  </div>
+
+  <div class="scroll-cue"><span class="line"></span>role para explorar</div>
+
+</section>
+
+<!-- NOSSA HISTÓRIA -->
+<section id="sobre">
+  <div class="container">
+
+    <div class="historia-grid">
+      <div class="historia-texto">
+        <div class="section-head">
+          <h2>Nossa História</h2>
         </div>
+        <p>Entre 2024 e 2026, construímos juntos uma trajetória marcada por <strong>amizade, aprendizado e muitas conquistas</strong>.</p>
+        <p>Este espaço reúne as memórias, os projetos e os momentos que tornaram nossa turma inesquecível.</p>
+      </div>
 
-        <nav>
-            <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Nossa História</a></li>
-                <li><a href="#professores">Professores</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#trailer">Trailer</a></li>
-                <li><a href="#galeria">Galeria Geral</a></li>
-                <li><a href="#contato">Contribuir</a></li>
-            </ul>
-        </nav>
-
-    </header>
-
-    <!-- BANNER COM SLIDESHOW DE FOTOS -->
-
-    <section id="inicio" class="hero">
-
-        <div class="hero-slideshow">
-            <img src="slideshow.jpeg" alt="Foto da turma 1">
-            <img src="slideshow 1.jpeg" alt="Foto da turma 2">
-            <img src="slideshow 2.jpeg" alt="Foto da turma 3">
-            <img src="slideshow 4.jpeg" alt="Foto da turma 4">
+      <div class="historia-visual">
+        <div class="historia-card">
+          <img src="foto da turma.jpeg" alt="Foto da turma">
         </div>
+      </div>
+    </div>
 
-        <div class="overlay"></div>
+    <div class="projetos-inline">
+      <div class="projeto-chip">
+        <h4>Feira de Ciências</h4>
+        <p>Projeto desenvolvido pela turma durante o ano letivo.</p>
+      </div>
+      <div class="projeto-chip">
+        <h4>Site da Turma</h4>
+        <p>Projeto criado pelos alunos para registrar as memórias da classe.</p>
+      </div>
+      <div class="projeto-chip">
+        <h4>Robótica</h4>
+        <p>Desenvolvimento de projetos utilizando Arduino.</p>
+      </div>
+    </div>
 
-        <h1>Momentos Inesquecíveis</h1>
+  </div>
+</section>
 
-        <p>
-            Uma história construída entre amizades,
-            aprendizados e muitas conquistas.
-        </p>
+<!-- PROFESSORES -->
+<section id="professores">
+  <div class="container">
 
-    </section>
+    <div class="section-head center">
+      <h2>Professores</h2>
+      <p>As pessoas que caminharam ao nosso lado ao longo desses três anos.</p>
+    </div>
 
-    <!-- NOSSA HISTÓRIA -->
+    <input type="radio" name="prof" id="p1" class="prof-radio" checked>
+    <input type="radio" name="prof" id="p2" class="prof-radio">
+    <input type="radio" name="prof" id="p3" class="prof-radio">
+    <input type="radio" name="prof" id="p4" class="prof-radio">
+    <input type="radio" name="prof" id="p5" class="prof-radio">
+    <input type="radio" name="prof" id="p6" class="prof-radio">
 
-    <section id="sobre">
+    <div class="prof-grid">
+      <label class="prof-card" for="p1">
+        <img class="prof-foto" src="professor 1.jpeg" alt="Foto do professor Paulo">
+        <h3>Paulo Marques</h3>
+        <span class="prof-tag">Programação</span>
+      </label>
+      <label class="prof-card" for="p2">
+        <img class="prof-foto" src="professor 2.jpeg" alt="Foto do professor Jonas">
+        <h3>Jonas Evangelista</h3>
+        <span class="prof-tag">"Divo"</span>
+      </label>
+      <label class="prof-card" for="p3">
+        <div class="prof-foto prof-foto-vazia" aria-hidden="true"></div>
+        <h3>Álvaro</h3>
+        <span class="prof-tag">Algoritmos e lógica</span>
+      </label>
+      <label class="prof-card" for="p4">
+        <img class="prof-foto" src="professor 4.jpeg" alt="Foto do professor Matheus">
+        <h3>Matheus</h3>
+        <span class="prof-tag">Redes</span>
+      </label>
+      <label class="prof-card" for="p5">
+        <img class="prof-foto" src="professor 5.jpeg" alt="Foto da professora Nilmecy">
+        <h3>Nilmecy</h3>
+        <span class="prof-tag">Madrinha · História</span>
+      </label>
+      <label class="prof-card" for="p6">
+        <img class="prof-foto" src="thaise 1.jpeg" alt="Foto da professora Thaise">
+        <h3>Thaise</h3>
+        <span class="prof-tag">Madrinha · Matemática</span>
+      </label>
+    </div>
 
-        <h2 class="section-title reveal">
-            Nossa História
-        </h2>
+    <div class="prof-painel">
 
-        <div class="about-content reveal">
-
-            <div class="about-text">
-
-                <p>
-                    Entre 2024 e 2026, construímos juntos uma trajetória
-                    marcada por amizade, aprendizado e muitas conquistas.
-                </p>
-
-                <p>
-                    Este espaço reúne as memórias, os projetos e os
-                    momentos que tornaram nossa turma inesquecível.
-                </p>
-
-            </div>
-
-            <div class="about-image">
-
-                <img src="foto da turma.jpeg"
-                alt="Foto da turma">
-
-            </div>
-
+      <div class="prof-content" id="c1">
+        <div class="professor-fotos">
+          <img src="professor 1.jpeg" alt="Foto 1 do Professor Paulo">
+          <img src="professor 1.4.jpeg" alt="Foto 2 do Professor Paulo">
+          <img src="professor 1.2.jpeg" alt="Foto 3 do Professor Paulo">
+          <img src="professor 1.3.jpeg" alt="Foto 4 do Professor Paulo">
         </div>
-
-    </section>
-
-    <!-- PROFESSORES -->
-
-    <section id="professores">
-
-        <h2 class="section-title reveal">
-            Professores
-        </h2>
-
-        <div class="professor-tabs reveal">
-
-            <button class="tab-btn active" data-tab="professor1">Paulo</button>
-            <button class="tab-btn" data-tab="professor2">Jonas</button>
-            <button class="tab-btn" data-tab="professor3">Álvaro</button>
-            <button class="tab-btn" data-tab="professor4">Matheus</button>
-            <button class="tab-btn" data-tab="professor5">Nilmecy</button>
-            <button class="tab-btn" data-tab="professor6">Thaise</button>
-
+        <div class="professor-historia">
+          <strong>História do Professor Paulo Marques</strong>
+          <p>O professor Paulo Marques é um daqueles professores que acabam fazendo parte da nossa história, não apenas pelo que ensinam, mas também pelos momentos que vivemos juntos.</p>
+          <p>Paulo chegou ainda no final do primeiro ano, quando éramos duas turmas separadas. Pouco tempo depois, veio a junção das salas e tivemos que aprender a conviver com diferentes personalidades. Foi nessa época que Paulo também começou a conhecer melhor a nossa turma.</p>
+          <p>No segundo ano, enfrentamos um dos nossos maiores desafios: o banco de dados. Foram muitos códigos, erros, tentativas e momentos de desespero. Aos poucos, porém, fomos aprendendo e percebendo que éramos capazes de superar essas dificuldades.</p>
+          <p>Com seu jeito tranquilo, Paulo sempre nos mostrou que nem tudo precisava ser resolvido na pressa. Muitas vezes, era melhor parar, respirar, tomar um café e tentar novamente.</p>
+          <p>Também tivemos sua participação no Túnel da Computação, um projeto que marcou nossa caminhada. Em 2026, Paulo voltou como nosso professor de programação e também passou a acompanhar o projeto, continuando presente na nossa evolução.</p>
+          <p>Professor Paulo, obrigado pela paciência, pelos ensinamentos e por acreditar nas nossas ideias. O senhor fez parte de momentos importantes da nossa formação e sempre será lembrado com muito carinho.</p>
+          <p>Essa é a nossa história com Paulo Marques.</p>
         </div>
+      </div>
 
-        <div class="professor-painel">
+      <div class="prof-content" id="c2">
+        <div class="professor-fotos">
+          <img src="professor 2.jpeg" alt="Foto 1 do Professor Jonas">
+          <img src="professor 2.1.jpeg" alt="Foto 2 do Professor Jonas">
+          <img src="professor 2.2.jpeg" alt="Foto 3 do Professor Jonas">
+          <img src="professor 2.3.jpeg" alt="Foto 4 do Professor Jonas">
+        </div>
+        <div class="professor-historia">
+          <strong>História do Professor Jonas Evangelista da Silva</strong>
+          <p>O professor Jonas chegou à nossa turma no segundo ano, quando ainda estávamos nos adaptando à junção das salas. Éramos uma turma cheia de personalidades, barulho e, muitas vezes, um verdadeiro caos.</p>
+          <p>No começo, não foi fácil. Tivemos broncas, desafios e até o famoso dia em que a turma foi zerada. Naquele momento, parecia o fim do mundo, mas depois entendemos a lição sobre respeito, responsabilidade e limites.</p>
+          <p>Com o tempo, a relação mudou. Vieram os projetos, as apresentações, as risadas e a confiança. Jonas passou a enxergar nosso potencial e nos incentivou a acreditar mais em nós mesmos.</p>
+          <p>Quando ele saiu, percebemos o quanto já fazia parte da nossa turma. E quando voltou em 2026, foi como recuperar uma parte importante da nossa caminhada.</p>
+          <p>Hoje, chamá-lo de Divo é uma forma de demonstrar todo o carinho que construímos ao longo desses anos.</p>
+          <p>Professor Jonas, obrigado por acreditar em nós, por nos desafiar e por fazer parte da nossa história. Uma parte do que somos também carrega um pouco de você.</p>
+        </div>
+      </div>
 
-            <div class="tab-conteudo active" id="professor1">
-                <div class="professor-fotos">
-                    <img src="professor 1.jpeg" alt="Foto 1 do Professor 1">
-                    <img src="professor 1.4.jpeg" alt="Foto 2 do Professor 1">
-                    <img src="professor 1.2.jpeg" alt="Foto 3 do Professor 1">
-                    <img src="professor 1.3.jpeg" alt="Foto 4 do Professor 1">
-                </div>
-                <p class="professor-historia">
-                    <strong>História do Professor Paulo Marques:</strong>
-                    Nossa história com o professor Paulo Marques
+      <div class="prof-content" id="c3">
+        <div class="professor-fotos">
+          <div class="professor-foto-vazia" aria-hidden="true"></div>
+        </div>
+        <div class="professor-historia">
+          <strong>História do Professor Álvaro</strong>
+          <p>Professor Álvaro — O início da nossa jornada.</p>
+          <p>Toda história tem um começo, e a nossa no curso de Informática começou com professores que acreditaram em nós. Um deles foi o professor Álvaro.</p>
+          <p>Foi com ele que tivemos nossos primeiros contatos com algoritmos, fluxogramas e lógica de programação. No começo, muitas coisas pareciam difíceis, mas aos poucos fomos aprendendo a pensar, errar, corrigir e tentar novamente.</p>
+          <p>Também ficaram marcadas as provas corrigidas ao vivo, os momentos de tensão, as risadas e até a famosa história de que ele tinha apenas 18 anos. Eram pequenas coisas que acabavam tornando as aulas especiais.</p>
+          <p>Mesmo tendo ficado conosco apenas no primeiro ano, Álvaro deixou uma marca importante na nossa turma. Sua saída foi sentida, mas seus ensinamentos continuaram fazendo parte da nossa caminhada.</p>
+          <p>Hoje, olhando para tudo o que construímos, percebemos que ele esteve presente em um momento muito importante: o nosso começo.</p>
+          <p>Professor Álvaro, obrigado por cada ensinamento, pelas brincadeiras e por fazer parte dos primeiros passos da nossa história. Você esteve apenas no primeiro ano, mas aquilo que nos ensinou continuou conosco nos anos seguintes. Obrigado por ter sido parte do nosso começo.</p>
+        </div>
+      </div>
 
-O professor Paulo Marques é um daqueles professores que acabam fazendo parte da nossa história, não apenas pelo que ensinam, mas também pelos momentos que vivemos juntos.
-
-Paulo chegou ainda no final do primeiro ano, quando éramos duas turmas separadas. Pouco tempo depois, veio a junção das salas e tivemos que aprender a conviver com diferentes personalidades. Foi nessa época que Paulo também começou a conhecer melhor a nossa turma.
-
-No segundo ano, enfrentamos um dos nossos maiores desafios: o banco de dados. Foram muitos códigos, erros, tentativas e momentos de desespero. Aos poucos, porém, fomos aprendendo e percebendo que éramos capazes de superar essas dificuldades.
-
-Com seu jeito tranquilo, Paulo sempre nos mostrou que nem tudo precisava ser resolvido na pressa. Muitas vezes, era melhor parar, respirar, tomar um café e tentar novamente.
-
-Também tivemos sua participação no Túnel da Computação, um projeto que marcou nossa caminhada. Em 2026, Paulo voltou como nosso professor de programação e também passou a acompanhar o projeto, continuando presente na nossa evolução.
-
-Professor Paulo, obrigado pela paciência, pelos ensinamentos e por acreditar nas nossas ideias. O senhor fez parte de momentos importantes da nossa formação e sempre será lembrado com muito carinho.
-
-Essa é a nossa história com Paulo Marques.
-
-
-                </p>
-            </div>
-
-            <div class="tab-conteudo" id="professor2">
-                <div class="professor-fotos">
-                    <img src="professor 2.jpeg" alt="Foto 1 do Professor 2">
-                    <img src="professor 2.1.jpeg" alt="Foto 2 do Professor 2">
-                    <img src="professor 2.2.jpeg" alt="Foto 3 do Professor 2">
-                    <img src="professor 2.3.jpeg" alt="Foto 4 do Professor 2">
-                </div>
-                <p class="professor-historia">
-                    <strong>História do Professor Jonas Evangelista da Silva:</strong>
-                    Nossa história com o professor Jonas Evangelista da Silva
-                     
-                    O professor Jonas chegou à nossa turma no segundo ano, quando ainda estávamos nos adaptando à junção das salas. Éramos uma turma cheia de personalidades, barulho e, muitas vezes, um verdadeiro caos.
-
-No começo, não foi fácil. Tivemos broncas, desafios e até o famoso dia em que a turma foi zerada. Naquele momento, parecia o fim do mundo, mas depois entendemos a lição sobre respeito, responsabilidade e limites.
-
-Com o tempo, a relação mudou. Vieram os projetos, as apresentações, as risadas e a confiança. Jonas passou a enxergar nosso potencial e nos incentivou a acreditar mais em nós mesmos.
-
-Quando ele saiu, percebemos o quanto já fazia parte da nossa turma. E quando voltou em 2026, foi como recuperar uma parte importante da nossa caminhada.
-
-Hoje, chamá-lo de Divo é uma forma de demonstrar todo o carinho que construímos ao longo desses anos.
-
-Professor Jonas, obrigado por acreditar em nós, por nos desafiar e por fazer parte da nossa história. Uma parte do que somos também carrega um pouco de você.
-
-
-                </p>
-            </div>
-
-            <div class="tab-conteudo" id="professor3">
-                <div class="professor-fotos">
-                    <img src="professor 3.jpeg" alt="Foto 1 do Professor 3">
-                    <img src="professor 3.1.jpeg" alt="Foto 2 do Professor 3">
-                </div>
-                <p class="professor-historia">
-                    <strong>História do Professor Álvaro:</strong>
-                    Professor Álvaro — O início da nossa jornada
-
-Toda história tem um começo, e a nossa no curso de Informática começou com professores que acreditaram em nós. Um deles foi o professor Álvaro.
-
-Foi com ele que tivemos nossos primeiros contatos com algoritmos, fluxogramas e lógica de programação. No começo, muitas coisas pareciam difíceis, mas aos poucos fomos aprendendo a pensar, errar, corrigir e tentar novamente.
-
-Também ficaram marcadas as provas corrigidas ao vivo, os momentos de tensão, as risadas e até a famosa história de que ele tinha apenas 18 anos. Eram pequenas coisas que acabavam tornando as aulas especiais.
-
-Mesmo tendo ficado conosco apenas no primeiro ano, Álvaro deixou uma marca importante na nossa turma. Sua saída foi sentida, mas seus ensinamentos continuaram fazendo parte da nossa caminhada.
-
-Hoje, olhando para tudo o que construímos, percebemos que ele esteve presente em um momento muito importante: o nosso começo.
-
-Professor Álvaro, obrigado por cada ensinamento, pelas brincadeiras e por fazer parte dos primeiros passos da nossa história.
-
-Você esteve apenas no primeiro ano, mas aquilo que nos ensinou continuou conosco nos anos seguintes.
-
-Obrigado por ter sido parte do nosso começo.
-
-
-                </p>
-            </div>
-
-            <div class="tab-conteudo" id="professor4">
-                <div class="professor-fotos">
-                    <img src="professor 4.jpeg" alt="Foto 1 do Professor 4">
-                    <img src="professor 4.1.jpeg" alt="Foto 2 do Professor 4">
-                    <img src="professor 4.2.jpeg" alt="Foto 3 do Professor 4">
-                    <img src="professor 4.3.jpeg" alt="Foto 4 do Professor 4">
-                </div>
-                <p class="professor-historia">
-                    <strong>História do Professor Matheus:</strong>
-                    Professor Matheus – A base da nossa caminhada
-                      O professor Matheus foi um dos primeiros professores da nossa jornada no curso de Informática. Foi com ele que começamos a construir muitos dos conhecimentos que carregamos até hoje. Aprendemos os fundamentos de redes, demos os primeiros passos na programação e criamos nosso primeiro programa em Portugol, o inesquecível Olá, Mundo!.
-
-Suas aulas sempre traziam algo diferente. Entre equipamentos, experiências e atividades práticas, fomos aprendendo não apenas a teoria, mas também a colocar o conhecimento em prática.
-
-Como éramos a primeira turma, muitas vezes não tínhamos materiais suficientes. Por isso, fomos atrás de equipamentos em lojas e conseguimos doações de monitores, CPUs, teclados, mouses e memórias. Desmontar, montar, testar e tentar consertar fez parte da nossa formação.
-
-No segundo ano, infelizmente, tivemos que nos despedir do senhor. Mas seus ensinamentos permaneceram conosco e continuam fazendo parte da nossa caminhada.
-
-Professor Matheus, muito obrigado por tudo. O senhor foi uma das bases da nossa formação e sempre fará parte da nossa história.
-    
-                </p>
-            </div>
-
-            <div class="tab-conteudo" id="professor5">
-                <div class="professor-fotos">
-                    <img src="professor 5.jpeg" alt="Foto 1 do Professor 5">
-                    <img src="professor 5.1.jpeg" alt="Foto 2 do Professor 5">
-                    <img src="professor 5.2.jpeg" alt="Foto 3 do Professor 5">
-                    <img src="professor 5.3.jpeg" alt="Foto 4 do Professor 5">
-                </div>
-                <p class="professor-historia">
-                    <strong>História da Professora Nilmecy:</strong>
-                    Professora Nilmecy — A nossa madrinha, nossa inspiração
-                    O que dizer sobre uma professora que está conosco desde o começo?
-
-A professora Nilmecy esteve presente desde os primeiros passos da nossa turma. Seus projetos nos deram oportunidades de mostrar quem somos, descobrir talentos e perceber que somos capazes de ir muito além da sala de aula.
-
-Ela é uma professora de História que ensina muito mais do que História. Ensina responsabilidade, respeito, caráter e a importância de buscar sempre algo a mais. E, claro, também não faltaram os famosos puxões de orelha que fizeram parte da nossa caminhada.
-
-Entre projetos, brincadeiras e muitos momentos especiais, construímos uma relação de carinho e admiração.
-
-Hoje temos a honra de chamá-la de nossa madrinha. Obrigado, professora Nil, por cada oportunidade, cada conselho e por sempre acreditar em nós.
-
-A senhora faz parte da nossa história, da nossa formação e do nosso coração.
-
-Com carinho,
-3º Ano de Informática
-
-                </p>
-            </div>
-
-            <div class="tab-conteudo" id= "professor6">
-                <div class="professor-fotos">
-                    <img src="thaise 1.jpeg" alt="Foto 1 do Professor 6"
-                    >
-                </div>
-                <p class="professor-historia">
-                <strong>Professora Thaise:</strong>
-                    A professora Thaise chegou à nossa turma este ano trazendo muito mais do que fórmulas e cálculos. Trouxe paciência, dedicação e, principalmente, carinho pelo que faz.
-
-Nossa turma sempre teve suas dificuldades com Matemática, mas, com a senhora, começamos a enxergar a matéria de uma maneira diferente. Aprendemos que errar faz parte e que, com esforço e persistência, somos capazes de aprender.
-
-Foi por isso que escolhemos a senhora para ser nossa madrinha. Porque, além de ensinar Matemática, a senhora acredita em nós e nos incentiva a continuar.
-
-Obrigado por cada explicação, cada conselho e por não desistir de nós. É uma honra ter a senhora ao nosso lado nessa reta final.
-
-Professora Thaise, nossa madrinha, obrigado por fazer parte da nossa história.
-
-                </p>
-            </div>
+      <div class="prof-content" id="c4">
+        <div class="professor-fotos">
+          <img src="matheus.jpeg" alt="Foto 1 do Professor Matheus">
 
         </div>
-
-    </section>
-
-    <!-- PROJETOS -->
-
-    <section id="projetos">
-
-        <h2 class="section-title reveal">
-            Projetos
-        </h2>
-
-        <div class="gallery-grid reveal">
-
-            <div class="gallery-item">
-                <h3>Feira de Ciências</h3>
-                <p>Projeto desenvolvido pela turma durante o ano letivo.</p>
-            </div>
-
-            <div class="gallery-item">
-                <h3>Site da Turma</h3>
-                <p>Projeto criado pelos alunos para registrar as memórias da classe.</p>
-            </div>
-
-            <div class="gallery-item">
-                <h3>Robótica</h3>
-                <p>Desenvolvimento de projetos utilizando Arduino.</p>
-            </div>
-
+        <div class="professor-historia">
+          <strong>História do Professor Matheus</strong>
+          <p>O professor Matheus foi um dos primeiros professores da nossa jornada no curso de Informática. Foi com ele que começamos a construir muitos dos conhecimentos que carregamos até hoje. Aprendemos os fundamentos de redes, demos os primeiros passos na programação e criamos nosso primeiro programa em Portugol, o inesquecível Olá, Mundo!.</p>
+          <p>Suas aulas sempre traziam algo diferente. Entre equipamentos, experiências e atividades práticas, fomos aprendendo não apenas a teoria, mas também a colocar o conhecimento em prática.</p>
+          <p>Como éramos a primeira turma, muitas vezes não tínhamos materiais suficientes. Por isso, fomos atrás de equipamentos em lojas e conseguimos doações de monitores, CPUs, teclados, mouses e memórias. Desmontar, montar, testar e tentar consertar fez parte da nossa formação.</p>
+          <p>No segundo ano, infelizmente, tivemos que nos despedir do senhor. Mas seus ensinamentos permaneceram conosco e continuam fazendo parte da nossa caminhada.</p>
+          <p>Professor Matheus, muito obrigado por tudo. O senhor foi uma das bases da nossa formação e sempre fará parte da nossa história.</p>
         </div>
+      </div>
 
-    </section>
-
-    <!-- TRAILER -->
-
-    <section id="trailer">
-
-        <h2 class="section-title reveal">
-            Trailer
-        </h2>
-
-        <div class="video-destaque reveal" style="margin:0 auto;">
-
-            <video controls>
-                <source src="video da turma.mp4" type="video/mp4">
-            
-            </video>
-
-            <div class="caption">
-                Vídeo Especial da Turma
-            </div>
-
+      <div class="prof-content" id="c5">
+        <div class="professor-fotos">
+          <img src="professor 5.jpeg" alt="Foto 1 da Professora Nilmecy">
+          <img src="professor 5.1.jpeg" alt="Foto 2 da Professora Nilmecy">
+          <img src="professor 5.2.jpeg" alt="Foto 3 da Professora Nilmecy">
+          <img src="professor 5.3.jpeg" alt="Foto 4 da Professora Nilmecy">
         </div>
-
-    </section>
-
-    <!-- GALERIA GERAL -->
-
-    <section id="galeria">
-
-        <h2 class="section-title reveal">
-            Galeria Geral
-        </h2>
-
-        <div class="gallery-grid reveal">
-
-            <div class="gallery-item">
-                <img src="galeria geral 1.jpeg" alt="Foto da turma">
-            </div>
-
-            <div class="gallery-item">
-                <img src="galeria 1.2.jpeg" alt="Foto da turma">
-            </div>
-
-            <div class="gallery-item">
-                <img src="galeria 1.3.jpeg" alt="Foto da turma">
-            </div>
-
-            <div class="gallery-item">
-                <img src="galeria 1.6.jpeg" alt="Foto da turma">
-            </div>
-
-            <div class="gallery-item">
-                <img src="galeria 1.7.jpeg" alt="Foto da turma">
-            </div>
-
-            <div class="gallery-item">
-                <img src="galeria 1.9.jpeg" alt="Foto da turma">
-            </div>
-
-
-            <div class="gallery-item">
-                <img src="galeria 2.jpeg" alt="Foto da turma">
-            </div>
-
-
-            <div class="gallery-item">
-                <img src="galeria 2.1.jpeg" alt="Foto da turma">
-            </div>
-
-
-            <div class="gallery-item">
-                <img src="galeria 2.2.jpeg" alt="Foto da turma">
-            </div>
-
-
-            <div class="gallery-item">
-                <img src="galeria 2.3.jpeg" alt="Foto da turma">
-            </div>
-
-
-
-            <div class="gallery-item">
-                <img src="galeria 2.4.jpeg" alt="Foto da turma">
-            </div>
-
-            <div class="gallery-item">
-                <img src="galeria 2.7.jpeg" alt="Foto da turma">
-            </div>
-
-
-            <div class="gallery-item">
-                <img src="galeria 2.8.jpeg" alt="Foto da turma">
-            </div>
-
-            <div class="gallery-item">
-                <img src="galeria 3.jpeg" alt="Foto da turma">
-            </div>
-
-
-               <div class="gallery-item">
-                <img src="galeria 3.1.jpeg" alt="Foto da turma">
-            </div>
-
-
-            <div class="gallery-item">
-                <img src="galeria 3.2.jpeg" alt="Foto da turma">
-            </div>
-
-            <div class="gallery-item">
-                <img src="galeria 3.3.jpeg" alt="Foto da turma">
-            </div>
-
-            <div class="gallery-item">
-                <img src="galeria 3.5.jpeg" alt="Foto da turma">
-            </div>
-
-
-
-            <div class="gallery-item">
-                <img src="galeria 3.6.jpeg" alt="Foto da turma">
-            </div>
-
-    
-
-
-             <div class="gallery-item">
-                <img src="galeria 3.7.jpeg" alt="Foto da turma">
-            </div>
-
-
+        <div class="professor-historia">
+          <strong>História da Professora Nilmecy</strong>
+          <p>Professora Nilmecy — A nossa madrinha, nossa inspiração.</p>
+          <p>O que dizer sobre uma professora que está conosco desde o começo?</p>
+          <p>A professora Nilmecy esteve presente desde os primeiros passos da nossa turma. Seus projetos nos deram oportunidades de mostrar quem somos, descobrir talentos e perceber que somos capazes de ir muito além da sala de aula.</p>
+          <p>Ela é uma professora de História que ensina muito mais do que História. Ensina responsabilidade, respeito, caráter e a importância de buscar sempre algo a mais. E, claro, também não faltaram os famosos puxões de orelha que fizeram parte da nossa caminhada.</p>
+          <p>Entre projetos, brincadeiras e muitos momentos especiais, construímos uma relação de carinho e admiração.</p>
+          <p>Hoje temos a honra de chamá-la de nossa madrinha. Obrigado, professora Nil, por cada oportunidade, cada conselho e por sempre acreditar em nós.</p>
+          <p>A senhora faz parte da nossa história, da nossa formação e do nosso coração.</p>
+          <p>Com carinho, 3º Ano de Informática.</p>
         </div>
+      </div>
+
+      <div class="prof-content" id="c6">
+        <div class="professor-fotos">
+          <img src="thaise 1.jpeg" alt="Foto da Professora Thaise">
+          <img src="thaise 2.jpeg" alt="foro da professora thaise">
+          
+        </div>
+        <div class="professor-historia">
+          <strong>Professora Thaise</strong>
+          <p>A professora Thaise chegou à nossa turma este ano trazendo muito mais do que fórmulas e cálculos. Trouxe paciência, dedicação e, principalmente, carinho pelo que faz.</p>
+          <p>Nossa turma sempre teve suas dificuldades com Matemática, mas, com a senhora, começamos a enxergar a matéria de uma maneira diferente. Aprendemos que errar faz parte e que, com esforço e persistência, somos capazes de aprender.</p>
+          <p>Foi por isso que escolhemos a senhora para ser nossa madrinha. Porque, além de ensinar Matemática, a senhora acredita em nós e nos incentiva a continuar.</p>
+          <p>Obrigado por cada explicação, cada conselho e por não desistir de nós. É uma honra ter a senhora ao nosso lado nessa reta final.</p>
+          <p>Professora Thaise, nossa madrinha, obrigado por fazer parte da nossa história.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- MOMENTOS -->
+  <section id="momentos">
+  <div class="container">
+
+    <div class="section-head center">
+      <h2>Momentos</h2>
+      <p>Alguns dos instantes que mais marcaram a turma ao longo desses três anos.</p>
+    </div>
+
+    <div class="momentos-fotos">
+      <a class="momento-foto" href="#lb-m1"><img src="galeria 1.2.jpeg" alt="Momento da turma" loading="lazy"></a>
+      <a class="momento-foto" href="#lb-m2"><img src="galeria 1.1.jpeg" alt="Momento da turma" loading="lazy"></a>
+      <a class="momento-foto" href="#lb-m3"><img src="galeria 2.jpeg" alt="Momento da turma" loading="lazy"></a>
+      <a class="momento-foto" href="#lb-m4"><img src="galeria 3.jpeg" alt="Momento da turma" loading="lazy"></a>
+      <a class="momento-foto" href="#lb-m5"><img src="momentos 5.jpeg" alt="Momento da turma" loading="lazy"></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRAILER -->
+<section id="trailer">
+  <div class="container">
+
+    <div class="section-head center">
+      <h2>Trailer</h2>
+      <p>O vídeo especial da nossa turma.</p>
+    </div>
+
+    <div class="video-destaque">
+      <video controls playsinline preload="metadata">
+        <source src="video da turma.mp4" type="video/mp4">
+      </video>
+      <div class="video-caption">Vídeo Especial da Turma</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALERIA GERAL -->
+<section id="galeria">
+  <div class="container">
+
+    <div class="section-head center">
+      <h2>Galeria Geral</h2>
+    </div>
+
+    <div class="gallery-grid">
+      <a class="gallery-item" href="#lb-g1"><img src="galeria 9.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g3"><img src="galeria 1.3.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g4"><img src="galeria 1.6.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g5"><img src="galeria 1.7.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g6"><img src="galeria 1.9.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g7"><img src="galeria 2.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g8"><img src="galeria 2.1.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g9"><img src="galeria 2.2.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g10"><img src="galeria 2.3.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g11"><img src="galeria 2.4.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g12"><img src="galeria 4.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g13"><img src="galeria 2.8.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g14"><img src="galeria 3.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g15"><img src="galeria 3.1.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g16"><img src="galeria 3.2.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g17"><img src="galeria 3.3.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g18"><img src="galeria 3.5.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g19"><img src="galeria 3.6.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g20"><img src="galeria 3.7.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g21"><img src="momentos 4.1.jpeg" alt="Foto da turma" loading="lazy"></a>
+      <a class="gallery-item" href="#lb-g22"><img src="momentos 4.5.jpeg" alt="Foto da turma" loading="lazy"></a>
+  
+    </div>
+
+  </div>
+</section>
+
+<!-- LINHA DO TEMPO -->
+<section id="timeline">
+  <div class="container">
+
+    <div class="section-head center">
+      <h2>Linha do Tempo</h2>
+      <p>Os principais capítulos da nossa caminhada, contados pelas histórias que já fazem parte da turma.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <span class="ano">2024 · 1º Ano</span>
+        <h4>O começo, ainda em turmas separadas</h4>
+        <p>Com o professor Matheus, demos os primeiros passos: fundamentos de redes, os primeiros programas em Portugol e o inesquecível "Olá, Mundo!". Com o professor Álvaro, veio o primeiro contato com algoritmos, fluxogramas e lógica de programação — e as provas corrigidas ao vivo.</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <span class="ano">2024 · Final do 1º Ano</span>
+        <h4>A junção das turmas</h4>
+        <p>Duas turmas separadas se tornaram uma só. Foi também nessa época que o professor Paulo chegou e começou a conhecer melhor a nossa turma — e que nos despedimos do professor Álvaro e do professor Matheus.</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <span class="ano">2025 · 2º Ano</span>
+        <h4>Desafios, broncas e crescimento</h4>
+        <p>Enfrentamos o banco de dados ao lado do professor Paulo — muitos códigos, erros e tentativas até aprendermos a superar as dificuldades. Foi também o ano em que o professor Jonas chegou, trazendo desafios, limites e, com o tempo, muita confiança.</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <span class="ano">2026 · 3º Ano</span>
+        <h4>O retorno de quem marcou a nossa história</h4>
+        <p>Paulo voltou como professor de programação, agora também acompanhando o projeto Túnel da Computação. Jonas — carinhosamente apelidado de "Divo" — também retornou. A professora Nilmecy, presente desde o início, seguiu como nossa madrinha, e a professora Thaise chegou trazendo paciência e confiança para a reta final.</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <span class="ano">2026 · Reta final</span>
+        <h4>Projetos que contam quem somos</h4>
+        <p>Feira de Ciências, Robótica com Arduino e o próprio site da turma — cada projeto reunindo tudo o que aprendemos e construímos juntos ao longo desses três anos.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ENCERRAMENTO -->
+<section id="encerramento">
+  <div class="encerramento-conteudo">
+    <span class="kicker">Turma de Informática · 2024 -2026</span>
+    <h2>Foram três anos de aprendizado, amizade e memórias que vamos carregar para sempre.</h2>
+    <p>A cada professor, a cada projeto e a cada momento registrado aqui, uma parte da nossa história.</p>
+    <p>Obrigado por terem feito parte dela.</p>
+    <div class="encerramento-assinatura">3º Ano de Informática</div>
+  </div>
+</section>
 
 
-    </section>
 
-    <!-- CONTRIBUIR -->
+<!-- FOOTER -->
+<footer>
+  <p>Projeto Oficial - Momentos Inesquecíveis 2024-2026</p>
+  <p>Criado por <strong>Kaic Carvalho Mendes Santos</strong> e <strong>Ryan Santana Soledade Lopes</strong></p>
+  <p>&copy; 2026 - Todos os direitos reservados.</p>
+</footer>
 
-    <section id="contato" class="contact-section">
+<!-- LIGHTBOXES — Momentos -->
+<div class="lightbox-target" id="lb-m1"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 1.2.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-m5"><a href="#_" class="lightbox-close">&times;</a><img src="momentos 5.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-m2"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 1.1.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-m3"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 2.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-m4"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 3.jpeg" alt="Foto ampliada" loading="lazy"></div>
 
-        <h2 class="section-title reveal">
-            Contribua com a História
-        </h2>
-
-        <p style="text-align:center; margin-bottom:20px;">
-            Envie fotos, histórias e momentos especiais da turma.
-        </p>
-
-        <form id="formContribuicao">
-
-            <div class="form-group">
-
-                <label>Seu Nome</label>
-
-                <input type="text"
-                placeholder="Digite seu nome"
-                required>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Tipo de contribuição</label>
-
-                <select>
-
-                    <option>História</option>
-                    <option>Foto</option>
-                    <option>Vídeo</option>
-
-                </select>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Mensagem</label>
-
-                <textarea rows="4"
-                placeholder="Conte mais sobre esse momento..."></textarea>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Enviar arquivo</label>
-
-                <input type="file">
-
-            </div>
-
-            <button type="submit">
-                Enviar Contribuição
-            </button>
-
-        </form>
-
-    </section>
-
-    <!-- FOOTER -->
-
-    <footer>
-        <p>Projeto Oficial - Momentos Inesquecíveis 2024-2026</p>
-
-        <p>Criado por <strong>Kaic Carvalho Mendes Santos</strong> e <strong>Ryan Santana Soledade Lopes</strong></p>
-        <p>&copy; 2026 - Todos os direitos reservados.</p>
-    </footer>
-
-    <!-- SCRIPT -->
-
-    <script>
-
-        document
-        .getElementById("formContribuicao")
-        .addEventListener("submit", function(event){
-
-            event.preventDefault();
-
-            alert("Contribuição enviada com sucesso!");
-
-            this.reset();
-
-        });
-
-        // Anima seções conforme aparecem na tela
-        const elementosAnimados = document.querySelectorAll(".reveal");
-
-        const observador = new IntersectionObserver(function(entradas){
-
-            entradas.forEach(function(entrada){
-
-                if(entrada.isIntersecting){
-                    entrada.target.classList.add("visible");
-                    observador.unobserve(entrada.target);
-                }
-
-            });
-
-        }, { threshold:0.15 });
-
-        elementosAnimados.forEach(function(el){
-            observador.observe(el);
-        });
-
-        // Troca de abas dos professores
-        const botoesAba = document.querySelectorAll(".tab-btn");
-        const conteudosAba = document.querySelectorAll(".tab-conteudo");
-
-        botoesAba.forEach(function(botao){
-
-            botao.addEventListener("click", function(){
-
-                const alvo = botao.getAttribute("data-tab");
-
-                botoesAba.forEach(function(b){ b.classList.remove("active"); });
-                conteudosAba.forEach(function(c){ c.classList.remove("active"); });
-
-                botao.classList.add("active");
-                document.getElementById(alvo).classList.add("active");
-
-            });
-
-        });
-
-    </script>
+<!-- LIGHTBOXES — Galeria Geral -->
+<div class="lightbox-target" id="lb-g1"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 9.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g2"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 1.2.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g3"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 1.3.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g4"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 1.6.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g5"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 1.7.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g6"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 1.9.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g7"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 2.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g8"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 2.1.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g9"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 2.2.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g10"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 2.3.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g11"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 2.4.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g12"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 4.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g13"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 2.8.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g14"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 3.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g15"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 3.1.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g16"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 3.2.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g17"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 3.3.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g18"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 3.5.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g19"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 3.6.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g20"><a href="#_" class="lightbox-close">&times;</a><img src="galeria 3.7.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g21"><a href="#_" class="lightbox-close">&times;</a><img src="momentos 4.1.jpeg" alt="Foto ampliada" loading="lazy"></div>
+<div class="lightbox-target" id="lb-g22"><a href="#_" class="lightbox-close">&times;</a><img src="momentos 4.5.jpeg" alt="Foto ampliada" loading="lazy"></div>
 
 </body>
 </html>
